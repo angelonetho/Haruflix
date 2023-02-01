@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import api from "../../services/api"
+
+import "./home.css"
 
 function Home() {
 
@@ -15,7 +18,8 @@ function Home() {
                 }
             })
 
-            console.log(response.data.results)
+            //console.log(response.data.results.slice(0, 10))
+            setFilmes(response.data.results.slice(0, 10))
         }
 
         loadFilmes()
@@ -23,8 +27,18 @@ function Home() {
 
 
     return(
-        <div>
-            <h1>Bem vindo a home</h1>
+        <div className="container">
+            <div className="lista-filmes">
+                {filmes.map((filme) => {
+                    return(
+                        <article key={filme.id}>
+                            <strong>{filme.title}</strong>
+                            <img src={`https://image.tmdb.org/t/p/original/${filme.poster_path}`} alt={filme.title} />
+                            <Link to={`/filmes/${filme.id}`}>Acessar</Link>
+                        </article>
+                    )
+                })}
+            </div>
         </div>
     )
 }
