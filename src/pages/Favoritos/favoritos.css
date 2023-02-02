@@ -14,7 +14,7 @@
 }
 
 .meus-filmes ul {
-    width: 45rem;
+    width: 75%;
 }
 
 .meus-filmes ul li {
@@ -25,7 +25,7 @@
     margin-bottom: 0.875rem;
 }
 
-.meus-filmesdiv {
+.meus-filmes div {
     display: flex;
     justify-content: center;
     align-items: center;
