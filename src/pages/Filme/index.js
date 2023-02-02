@@ -37,6 +37,23 @@ function Filme() {
         }
     }, [navigate, id])
 
+    function salvarFilme() {
+        const minhaLista = localStorage.getItem("@haruflix")
+
+        let filmesSalvos = JSON.parse(minhaLista) || []
+
+        const hasFilme = filmesSalvos.some( (filmeSalvo) =>  filmeSalvo.id === filme.id)
+
+        if(hasFilme) {
+            alert("ja ta")
+            return
+        }
+
+        filmesSalvos.push(filme)
+        localStorage.setItem("@haruflix", JSON.stringify(filmesSalvos))
+        alert("salvo")
+    }
+
     if(loading) {
         return(
             <div className="filme-info">
@@ -56,9 +73,9 @@ function Filme() {
             <strong>Avaliação: {filme.vote_average} / 10</strong>
 
             <div className="area-buttons">
-                <button>Salvar</button>
+                <button onClick={salvarFilme}>Salvar</button>
                 <button>
-                    <a target="_blank" rel='noreferrer' href={`https://youtube.com/results?search_query=${filme.title} Trailer`}>
+                    <a target="blank" rel='external' href={`https://youtube.com/results?search_query=${filme.title} Trailer`}>
                         Trailer
                     </a>
                 </button>
